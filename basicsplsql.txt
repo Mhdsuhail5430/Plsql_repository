@@ -33,3 +33,6 @@ city varchar2(50),
 email_id varchar2(50)
 );
    
+ select * from customer;
+ 
+ desc customer; --to describe the table
