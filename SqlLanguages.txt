@@ -1,0 +1,69 @@
+SQL LANGUAGES
+
+Data definition Language(DDL)-structure ****Auto commit***
+1.create
+2.Alter
+3.Rename
+4.Truncate
+5.Drop
+
+Data Manipulate language(DML)-data  ***User Commit ***8
+1.insert
+2.update
+3.delete
+4.merge
+
+Data Retrival language(DRL)
+1.select
+
+Transaction Control language(TCl)
+1.commit
+2.rollback
+3.savepoint
+
+Data Control langiage
+1.Grant
+2.Revoke
+
+
+
+
+select * from customer;
+ 
+ desc customer; --to describe the table
+ 
+ insert into customer
+(cust_id,cust_name,mobile,dob,city,email_id)
+values(100000,'Arun',9090909090,to_date('08/04/2000','mm/dd/yyyy'),'Chennai','arun@gmail.com');
+
+--if it is rolllback without commit it will not be retrived
+--but once commited it will not get rollbacked 
+
+rolllback;--it will rollback the previous records 
+
+insert into customer--inserting without mentioning the columns
+values(100001,'suhail',9875467801,to_date('01/07/2002','mm/dd/yyyy'),'Chennai','suhail@gmail.com');
+
+commit;
+
+--now rollback will not rolledback after commiting
+
+insert into customer--inserting without mentioning the columns
+values(100002,'sam',null,to_date('01/07/2002','mm/dd/yyyy'),'Chennai','sam@gmail.com');
+
+--if we inserting values without mentioning the column names we have to enter null in that particular values field
+-- Or else we have to mention the column name as well as values
+eg;insert into customer
+(cust_id,cust_name,dob,city,email_id)--in this mobile column name not mention as well as value
+values(100002,'sam',to_date('09/07/2002','mm/dd/yyyy'),'Chennai','sam@gmail.com');
+
+update customer set mobile=7798654556;
+
+rollback;
+
+update customer set mobile=7798654556 where cust_name='sam';
+
+
+
+
+
