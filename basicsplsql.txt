@@ -1,0 +1,35 @@
+PlSql
+
+DataTypes
+===========
+
+1.Numeric
+   
+   number()
+   number(8)   upto 8 numbers   99999999
+   number(5,2)        99999.22
+   number(2,2)        0.99
+   
+2.char
+   
+   char
+   varchar() ---depricted 
+   varchar2()    upto 4000 bytes
+   
+3.date
+
+   date      07-apr-2022
+   
+   
+CREATING A TABLE 
+==================
+
+create table customer(
+cust_id number(8),
+cust_name varchar2(50)
+mobile number(10),
+dob data,
+city varchar2(50),
+email_id varchar2(50)
+);
+   
