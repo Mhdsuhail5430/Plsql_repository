@@ -7,7 +7,7 @@ Data definition Language(DDL)-structure ****Auto commit***
 4.Truncate
 5.Drop
 
-Data Manipulate language(DML)-data  ***User Commit ***8
+Data Manipulate language(DML)-data  ***User Commit ***
 1.insert
 2.update
 3.delete
@@ -26,7 +26,7 @@ Data Control langiage
 2.Revoke
 
 
-
+         ----------Some DML Queries-----------
 
 select * from customer;
  
@@ -62,6 +62,50 @@ update customer set mobile=7798654556;
 rollback;
 
 update customer set mobile=7798654556 where cust_name='sam';
+
+
+
+ALTER TABLE customer RENAME COLUMN county TO country;
+
+                         *****DDL Operations******
+                         =========================
+						 
+						 
+---Adding a new column to table						 
+alter table customer 
+add county varchar2(30);
+						 
+
+ALTER TABLE customer RENAME COLUMN county TO country;
+
+In MySQL, the SQL syntax for ALTER TABLE Rename Column is
+==============================================================
+ALTER TABLE "table_name" Change "column 1" "column 2" ["Data Type"];
+ALTER TABLE "table_name" RENAME COLUMN "column 1" TO "column 2";
+ALTER TABLE Customer CHANGE Address Addr char(50);
+ALTER TABLE Customer RENAME COLUMN Address TO Addr;
+
+
+
+insert into customer
+(cust_id,cust_name,mobile.dob,email_id.country)
+values(100000000,"Dilip'.'+91-9090909090.to_date(08/04/2000','mm/dd/yyyy),'arun@gmail.com',"india');
+  --ORA-01438:value larger than specified precision allowed for this column
+  
+insert into customer
+(cust_id,cust_name,mobile,dob,email_id,country)
+values(10000005,'Dilip',+91-9090909090',to_date('08/04/2000','mm/dd/yyyy'),'arun@gmail.com','india');
+  -- ORA-01722:invalid number
+  
+ CUST_ID       NUMBER(8)number(10)   ---we can increase the size  but can't decrease  And cannot change datatypes,since it cantains data
+ MOBILE        NUMBER(10)varchar2(15)  -- The Error report if we try to decrease the size
+                                     ORA-01440:column to be modified must be empty to decrease precision or scale
+ 
+----Query to alter the  size of a columns
+alter table customer
+modify cust_id number(10);
+           
+
 
 
 

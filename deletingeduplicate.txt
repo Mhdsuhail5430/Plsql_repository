@@ -1,0 +1,52 @@
+create table customer(
+cust_id number(8),
+cust_name varchar2(50)
+mobile number(10),
+dob data,
+city varchar2(50),
+email_id varchar2(50)
+);
+
+insert into customer
+(cust_id,cust_name,mobile,dob,city,email_id)
+values(100000,'Arun',9090909090,to_date('08/04/2000','mm/dd/yyyy'),'Chennai','arun@gmail.com');
+
+insert into customer--inserting without mentioning the columns
+values(100001,'suhail',9875467801,to_date('01/07/2002','mm/dd/yyyy'),'Chennai','suhail@gmail.com');
+
+insert into customer--inserting without mentioning the columns
+values(100002,'sam',null,to_date('01/07/2002','mm/dd/yyyy'),'Chennai','sam@gmail.com');
+
+insert into customer--inserting without mentioning the columns
+values(100002,'sam',null,to_date('01/07/2002','mm/dd/yyyy'),'Chennai','sam@gmail.com');
+
+
+Query To Find duplicate value in a column
+===========================================
+
+SELECT  cust_id,cust_name,dob,city,email_id, COUNT(*) FROM customer
+GROUP BY cust_id,cust_name,dob,city,email_id HAVING COUNT(*)>1
+                   
+				   OR
+
+SELECT EMPNAME,DEPT,CONTACTNO,CITY, COUNT(*) FROM DETAILS
+GROUP BY EMPNAME,DEPT,CONTACTNO,CITY
+
+
+To Delete The duplicate value
+==============================
+
+DELETE
+FROM
+  customer
+WHERE
+  rowid NOT IN
+  (
+    SELECT
+      MIN(rowid)
+    FROM
+      customer
+    GROUP BY
+    cust_id,cust_name,dob,city,email_id
+      
+  );
