@@ -85,6 +85,13 @@ ALTER TABLE "table_name" RENAME COLUMN "column 1" TO "column 2";
 ALTER TABLE Customer CHANGE Address Addr char(50);
 ALTER TABLE Customer RENAME COLUMN Address TO Addr;
 
+--To rename the coulumn
+alter table customer
+rename column mobile to mobile_no;
+
+--To rename the table name 
+
+
 
 
 insert into customer
@@ -104,6 +111,56 @@ values(10000005,'Dilip',+91-9090909090',to_date('08/04/2000','mm/dd/yyyy'),'arun
 ----Query to alter the  size of a columns
 alter table customer
 modify cust_id number(10);
+
+--Trying to alter  the datatype of a cloumn----
+alter table customer
+modify mobile varchar2(10);---trying to alter number to varchar2,
+Error report
+ORA-01439:column to be modified must be empty to change datatype
+01439. 00000-"column to be modified must be empty to change datatype"
+
+To chnage the datatype we need to follow the steps:
+==================================================
+
+1. bkp atable
+2. truncate base table
+3. modify data type
+4. Restore the data
+5. drop bkp table
+
+
+create table customer-bkp as select * from customer;--this will create a  backup table; 
+
+create table customer-bkp 1 as select * from customer where 1-2;-- this creates structure only;
+
+truncate table customer;
+
+insert into customer(select * from customer);
+
+
+create table customer_test(no1 number(3),no2 number(3));
+
+
+savepoints
+===========
+
+insert into customer_test values(1,2);
+savepoint a;
+
+insert into customer_test values(3,4);
+savepoint b;
+
+insert into customer_test values(5,6);
+savepoint c;
+
+insert into customer_test values(7,8);
+savepoint d;
+
+select * from customer_test;
+
+rollback to c;
+
+
            
 
 
@@ -111,3 +168,4 @@ modify cust_id number(10);
 
 
 
+    
